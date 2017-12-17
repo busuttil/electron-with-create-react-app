@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import RowHead from './rowHead.component';
 
 import { openModal } from '../redux/modal/modal.actions';
+import {editLine} from "../redux/consultation/consultation.actions";
 
 const mapStateToProps = state => ({
   row: state.consultation.rows,

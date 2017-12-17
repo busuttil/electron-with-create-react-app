@@ -5,7 +5,7 @@ import { closeModal } from '../redux/modal/modal.actions';
 
 const mapStateToProps = state => ({
   modal: state.modal.modalOpen,
-  row: state.consultation.rows,
+  row: state.consultation.rowsById,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -18,7 +18,7 @@ const reduxDebugger = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVT
 let store = createStore(
   reducer,
   reduxDebugger,
-  applyMiddleware(logger, thunk)
+  applyMiddleware(thunk, logger)
 );
 
 store.subscribe(_.throttle(() => saveState(store.getState(), 5000)));

@@ -6,12 +6,9 @@ import Modal from 'react-bootstrap/lib/Modal';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
-import Checkbox from 'react-bootstrap/lib/Checkbox';
 import Button from 'react-bootstrap/lib/Button';
 
 import _ from 'lodash';
-
-const currentDate = moment().format('YYYY-MM-DD');
 
 class EditRow extends Component {
   constructor(props) {
@@ -39,16 +36,17 @@ class EditRow extends Component {
   }
 
   handleSubmit = () => {
-    const { addLineAction, closeModalAction} = this.props;
+    const { addLineAction, saveLineAction, closeModalAction, currentRow: row} = this.props;
     let currentRow = this.state;
-    addLineAction(currentRow);
+    if(row && row.id) {
+        saveLineAction(currentRow);
+    } else {
+        addLineAction(currentRow);
+    }
     closeModalAction();
-  }
+  };
 
   render() {
-    const { currentRow } = this.props;
-    const defaultCheckedCard = {}; //currentRow.meansPayment === 'CB' ? this.state.chkbox = true: '' ;
-    const defaultCheckedPaper = {}; //currentRow.meansPayment === 'Chèque' ? this.state.chkbox = true: '' ;
     return (
       <div>
        <Modal.Header closeButton>
@@ -118,6 +116,7 @@ class EditRow extends Component {
 EditRow.propTypes = {
   currentRow: PropTypes.object.isRequired,
   addLineAction: PropTypes.func.isRequired,
+  saveLineAction :PropTypes.func.isRequired,
   closeModalAction: PropTypes.func.isRequired,
 };
 

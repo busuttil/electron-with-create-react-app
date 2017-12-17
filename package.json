@@ -8,6 +8,7 @@
     "react-scripts": "0.8.5"
   },
   "dependencies": {
+    "immutable-set": "^1.1.0",
     "localforage": "^1.5.5",
     "lodash": "^4.17.4",
     "moment": "^2.19.4",

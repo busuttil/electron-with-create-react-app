@@ -1,27 +1,33 @@
-import _ from 'lodash';
+import Normalizer from '../normaliser';
+
+const rowsNormalizer = new Normalizer('rowIds', 'rowsById');
 
 const initialState = {
-  rows: [],
+  rowsById: {},
+  rowIds: [],
   currentRow: {},
 };
 
 // https://github.com/localForage/localForage
 export function consultation(state = initialState, action) {
   switch (action.type) {
-    case 'LOAD_ROW':
+      case 'LOAD_ROW':
       return {
-        ...state,
-        rows: [...state.rows, ...action.rows]
-      }
+        rowsById: {},
+        rowIds: [],
+        ...action.state.consultation,
+        currentRow: {},
+      };
     case 'ADD_LINE':
       return {
-        ...state,
-        rows: [...state.rows, action.row]
+        ...rowsNormalizer.append(state, [action.row]),
+          currentRow: {},
+
       }
-    case 'REMOVE_LINE':
+      case 'REMOVE_LINE':
       return {
-        ...state,
-        rows: state.rows.filter(row => row.id !== action.id)
+        ...rowsNormalizer.remove(state, action.id),
+          currentRow: {},
       }
     case 'EDIT_LINE':
       return {
@@ -31,7 +37,10 @@ export function consultation(state = initialState, action) {
     case 'SAVE_LINE':
       return {
         ...state,
-        currentRow: action.currentRow
+        rowsById: {
+          [action.currentRow.id]: action.currentRow,
+        },
+        currentRow: {},
       }
     default:
       return state;

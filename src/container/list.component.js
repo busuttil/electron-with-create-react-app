@@ -21,7 +21,7 @@ const List = ({ row, modal, closeModalAction }) => (
 );
 
 List.propTypes = {
-  row: PropTypes.array.isRequired,
+  row: PropTypes.object.isRequired,
   modal: PropTypes.bool,
   closeModalAction: PropTypes.func.isRequired,
 };

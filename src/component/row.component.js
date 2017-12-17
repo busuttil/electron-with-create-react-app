@@ -31,7 +31,7 @@ class Row extends Component {
 };
 
 Row.propTypes = {
-  row: PropTypes.array.isRequired,
+  row: PropTypes.object.isRequired,
   openModalAction: PropTypes.func.isRequired,
   editLineAction: PropTypes.func.isRequired,
   removeRowAction: PropTypes.func.isRequired,

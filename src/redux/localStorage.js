@@ -1,7 +1,7 @@
 import localforage from 'localforage';
 
 export const consultation = localforage.createInstance({
-  name: 'consolutation'
+  name: 'consultation'
 });
 
 export const loadState = () => consultation.getItem('state');

@@ -13,17 +13,13 @@ export const addLine = currentRow  => {
 export const removeLine = id => dispatch => {
   return dispatch({ type: types.REMOVE_LINE, id })
 };
-/*
+
 export const saveLine = currentRow => dispatch => {
     return dispatch(({ type: types.SAVE_LINE, currentRow }))
 };
 
-*/
-
 export const editLine = currentRow => ({type: types.EDIT_LINE, currentRow})
 
-export const loadRows = dispatch => {
-    return loadState().then(({ consultation: {rows} }) => {
-      return dispatch({type: types.LOAD_ROW, rows});
-    })
-};
+export const loadRows = dispatch =>
+    loadState()
+        .then(state => dispatch({type: types.LOAD_ROW, state}));
