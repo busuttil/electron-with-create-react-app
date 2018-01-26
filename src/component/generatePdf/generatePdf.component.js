@@ -8,7 +8,7 @@ import autoTable from 'jspdf-autotable';
 
 import { styles, headerStyles, margin } from '../../utils/stylesOutput.utils';
 import { prepareConsultation, prepareCharge } from '../../utils/prepareLayout.utils';
-import { getRevenue, getExpenses } from '../../utils/algorithm.utils';
+import { getRevenue, getExpenses, precisionRound } from '../../utils/algorithm.utils';
 import monthToString from '../../utils/month.utils';
 import iconPdf from '../../icons/pdf.svg';
 
@@ -31,7 +31,11 @@ class GeneratePdf extends Component {
 
   showExpenses = () => getExpenses(this.showCharges());
 
-  showBenefit = () => this.showRevenue() - this.showExpenses();
+  showBenefit = () => {
+    const calculateProfit = this.showRevenue() - this.showExpenses();
+
+    return precisionRound(calculateProfit, 2);
+  };
 
   downloadPdf = () => {
     const { consultations, filtering } = this.props;
@@ -64,13 +68,10 @@ class GeneratePdf extends Component {
   };
 
   render() {
-    console.log('###', this.showRevenue(), this.showExpenses(), this.showBenefit());
     return (
-      <div>
-        <button onClick={this.downloadPdf}>
-          <img src={iconPdf} alt="pdf" className="icons icons--pdf" />
-        </button>
-      </div>
+      <button onClick={this.downloadPdf}>
+        <img src={iconPdf} alt="pdf" className="icons icons--pdf" />
+      </button>
     );
   }
 }

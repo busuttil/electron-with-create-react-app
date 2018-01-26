@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import AccountComponent from './account.component';
 
 import { prepareConsultation, prepareCharge } from '../../utils/prepareLayout.utils';
-import { getRevenue, getExpenses } from '../../utils/algorithm.utils';
+import { getRevenue, getExpenses, precisionRound } from '../../utils/algorithm.utils';
 
 class AccountContainer extends Component {
   componentDidMount() {
@@ -20,7 +20,8 @@ class AccountContainer extends Component {
     const charges = prepareCharge(this.props.charges, this.props.filtering);
     const expenses = getExpenses(charges);
 
-    const profit = revenue - expenses;
+    const calculateProfit = revenue - expenses;
+    const profit = precisionRound(calculateProfit, 2);
 
     return (
       <AccountComponent

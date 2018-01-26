@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { split } from 'lodash';
 import moment from 'moment';
 import Modal from 'react-bootstrap/lib/Modal';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
@@ -50,12 +51,11 @@ class ConsulationEdit extends Component {
   };
 
   handleSubmit = () => {
-    const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth();
-
     const { createConsultationAction, updateConsultationAction, toggleModal } = this.props;
     const { consultation } = this.state;
+    const currentDate = split(consultation.date, '-', 3);
+    const currentMonth = currentDate[1];
+    const currentYear = currentDate[0];
 
     if (consultation.id) {
       updateConsultationAction(consultation);
@@ -125,7 +125,9 @@ class ConsulationEdit extends Component {
                 onChange={this.handleInputChange}
               />
             </FormGroup>
-            <Button onClick={this.handleSubmit}>Valider</Button>
+            <Button className="button-submit" onClick={this.handleSubmit}>
+              Valider
+            </Button>
           </form>
         </Modal.Body>
       </Modal>

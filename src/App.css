@@ -30,6 +30,9 @@ body {
   width: 100%;
   margin-top: 20px;
   margin-right: 10px;
+
+  height: 100vh;
+  overflow: auto;
 }
 
 .App-content #accountTabs-tab-1,
@@ -63,4 +66,26 @@ body {
 .icons--pdf {
   width: 20px;
   height: 20px;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header button {
+  margin-left: auto;
+}
+
+.modal-header .modal-title {
+  color: #9f8f75;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-body .button-submit {
+  margin-left: auto;
 }

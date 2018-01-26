@@ -9,3 +9,8 @@
 
   background-color: #493d31;
 }
+
+.menu__export-pdf {
+  margin-left: auto;
+  margin-right: 20px;
+}

@@ -3,8 +3,7 @@ import { filter, parseInt } from 'lodash';
 export const prepareConsultation = (consultations, filtering) =>
   filter(consultations, consultation => {
     const { month, year } = consultation;
-
-    if (month === parseInt(filtering.month) && year === parseInt(filtering.year)) {
+    if (month === filtering.month && year === filtering.year) {
       return consultation;
     }
 
@@ -15,7 +14,7 @@ export const prepareCharge = (charges, filtering) =>
   filter(charges, charge => {
     const { month, year } = charge;
 
-    if (month === parseInt(filtering.month) && year === parseInt(filtering.year)) {
+    if (month === filtering.month && year === filtering.year) {
       return charge;
     }
 

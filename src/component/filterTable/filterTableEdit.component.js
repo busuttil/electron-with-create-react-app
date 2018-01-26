@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import moment from 'moment';
 import Modal from 'react-bootstrap/lib/Modal';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
@@ -54,18 +55,18 @@ class FilterTable extends Component {
                 onChange={this.handleInputChange}
                 value={filtering.month}
               >
-                <option value="0">Janvier</option>
-                <option value="1">Février</option>
-                <option value="2">Mars</option>
-                <option value="3">Avril</option>
-                <option value="4">Mai</option>
-                <option value="5">Juin</option>
-                <option value="6">Juillet</option>
-                <option value="7">Août</option>
-                <option value="8">Septembre</option>
-                <option value="9">Octobre</option>
-                <option value="10">Novembre</option>
-                <option value="11">Décembre</option>
+                <option value="01">Janvier</option>
+                <option value="02">Février</option>
+                <option value="03">Mars</option>
+                <option value="04">Avril</option>
+                <option value="05">Mai</option>
+                <option value="06">Juin</option>
+                <option value="07">Juillet</option>
+                <option value="08">Août</option>
+                <option value="09">Septembre</option>
+                <option value="10">Octobre</option>
+                <option value="11">Novembre</option>
+                <option value="12">Décembre</option>
               </FormControl>
             </FormGroup>
 
@@ -83,8 +84,8 @@ class FilterTable extends Component {
 
 FilterTable.defaultProps = {
   filtering: {
-    year: new Date().getFullYear(),
-    month: new Date().getMonth(),
+    year: moment().format('YYYY'),
+    month: moment().format('MM'),
   },
 };
 

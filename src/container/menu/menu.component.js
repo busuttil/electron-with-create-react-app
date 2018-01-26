@@ -6,7 +6,9 @@ import './menu.css';
 const Menu = () => (
   <div className="menu">
     <FilterTable />
-    <GeneratePdf />
+    <div className="menu__export-pdf">
+      <GeneratePdf />
+    </div>
   </div>
 );
 
