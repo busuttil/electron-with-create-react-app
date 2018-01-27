@@ -24,12 +24,17 @@ body {
 .App-content {
   display: flex;
   flex-direction: row;
+  position: relative;
+  top: 0;
 }
 
 .App-content__list {
   width: 100%;
   margin-top: 20px;
   margin-right: 10px;
+
+  height: 100vh;
+  overflow: auto;
 }
 
 .App-content #accountTabs-tab-1,
@@ -58,4 +63,55 @@ body {
 .icons {
   width: 15px;
   height: 15px;
+}
+
+.icons--pdf {
+  width: 20px;
+  height: 20px;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header button {
+  margin-left: auto;
+}
+
+.modal-header .modal-title {
+  color: #9f8f75;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-body .button-submit {
+  margin-left: auto;
+}
+
+button.button-submit {
+  display: block;
+  margin-left: auto;
+
+  background: #9f8f75;
+  border-color: #9f8f75;
+  color: white;
+  padding: 5px 10px;
+  font-weight: lighter;
+}
+
+button.button-submit:hover {
+  background: #493d31;
+}
+
+button {
+  background-color: white;
+  border-color: #9f8f75;
+}
+
+button span {
+  color: #9f8f75;
 }

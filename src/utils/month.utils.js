@@ -1,16 +1,16 @@
 const numberToMonth = {
-  '0': 'Janvier',
-  '1': 'Février',
-  '2': 'Mars',
-  '3': 'Avril',
-  '4': 'Mai',
-  '5': 'Juin',
-  '6': 'Juillet',
-  '7': 'Aout',
-  '8': 'Septembre',
-  '9': 'Octobre',
-  '10': 'Novembre',
-  '11': 'Décembre',
+  '01': 'Janvier',
+  '02': 'Février',
+  '03': 'Mars',
+  '04': 'Avril',
+  '05': 'Mai',
+  '06': 'Juin',
+  '07': 'Juillet',
+  '08': 'Aout',
+  '09': 'Septembre',
+  '10': 'Octobre',
+  '11': 'Novembre',
+  '12': 'Décembre',
 };
 
 const monthToString = monthHighlighted => numberToMonth[monthHighlighted];

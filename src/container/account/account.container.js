@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { filter, parseInt } from 'lodash';
-
-import { getRevenue, getExpenses } from '../../utils/algorithm.utils';
 import AccountComponent from './account.component';
+
+import { prepareConsultation, prepareCharge } from '../../utils/prepareLayout.utils';
+import { getRevenue, getExpenses, precisionRound } from '../../utils/algorithm.utils';
 
 class AccountContainer extends Component {
   componentDidMount() {
@@ -13,42 +13,15 @@ class AccountContainer extends Component {
     this.props.loadFilterTableAction();
   }
 
-  prepareConsultation() {
-    const { consultations, filtering } = this.props;
-
-    return filter(consultations, consultation => {
-      const { month, year } = consultation;
-
-      if (month === parseInt(filtering.month) && year === parseInt(filtering.year)) {
-        return consultation;
-      }
-
-      return null;
-    });
-  }
-
-  prepareCharge() {
-    const { charges, filtering } = this.props;
-
-    return filter(charges, charge => {
-      const { month, year } = charge;
-
-      if (month === parseInt(filtering.month) && year === parseInt(filtering.year)) {
-        return charge;
-      }
-
-      return null;
-    });
-  }
-
   render() {
-    const consultations = this.prepareConsultation();
+    const consultations = prepareConsultation(this.props.consultations, this.props.filtering);
     const revenue = getRevenue(consultations);
 
-    const charges = this.prepareCharge();
+    const charges = prepareCharge(this.props.charges, this.props.filtering);
     const expenses = getExpenses(charges);
 
-    const profit = revenue - expenses;
+    const calculateProfit = revenue - expenses;
+    const profit = precisionRound(calculateProfit, 2);
 
     return (
       <AccountComponent

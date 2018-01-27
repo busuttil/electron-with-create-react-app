@@ -37,7 +37,6 @@ class SideBar extends Component {
       <div className={sidebarClasses}>
         <div className="sidebar__content">
           <Sumary revenue={revenue} expenses={expenses} profit={profit} />
-          <div className="sidebar__content-border-bottom" />
         </div>
         <button className="sidebar__button" onClick={this.toggleSidebar} />
       </div>
