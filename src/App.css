@@ -24,6 +24,8 @@ body {
 .App-content {
   display: flex;
   flex-direction: row;
+  position: relative;
+  top: 0;
 }
 
 .App-content__list {
@@ -88,4 +90,28 @@ body {
 
 .modal-body .button-submit {
   margin-left: auto;
+}
+
+button.button-submit {
+  display: block;
+  margin-left: auto;
+
+  background: #9f8f75;
+  border-color: #9f8f75;
+  color: white;
+  padding: 5px 10px;
+  font-weight: lighter;
+}
+
+button.button-submit:hover {
+  background: #493d31;
+}
+
+button {
+  background-color: white;
+  border-color: #9f8f75;
+}
+
+button span {
+  color: #9f8f75;
 }

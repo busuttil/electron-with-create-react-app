@@ -91,7 +91,9 @@ class ChargeEdit extends Component {
               <ControlLabel>Prix</ControlLabel>
               <FormControl type="number" min="0" name="price" value={charge.price} onChange={this.handleInputChange} />
             </FormGroup>
-            <Button onClick={this.handleSubmit}>Valider</Button>
+            <Button className="button-submit" onClick={this.handleSubmit}>
+              Valider
+            </Button>
           </form>
         </Modal.Body>
       </Modal>

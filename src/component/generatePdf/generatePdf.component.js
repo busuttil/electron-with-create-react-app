@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { values, map, dropRight, drop, findLast, split } from 'lodash';
+import { map, findLast, split, forEach } from 'lodash';
 
 // Libs
 import jsPDF from 'jspdf';
@@ -38,17 +38,23 @@ class GeneratePdf extends Component {
   };
 
   downloadPdf = () => {
-    const { consultations, filtering } = this.props;
     const newPdf = new jsPDF('p', 'pt');
+    const { consultations, filtering } = this.props;
+    const rows = [];
 
-    const gridConsultations = map(prepareConsultation(consultations, filtering), consultation => {
-      const arrayConsultation = values(consultation);
-      const dropIndex = drop(arrayConsultation);
+    forEach(map(prepareConsultation(consultations, filtering)), gridConsultation => {
+      const buildedConsultation = [];
 
-      return dropRight(dropIndex, 2);
+      buildedConsultation.push(gridConsultation.date);
+      buildedConsultation.push(gridConsultation.name);
+      buildedConsultation.push(gridConsultation.type);
+      buildedConsultation.push(gridConsultation.meansPayment);
+      buildedConsultation.push(gridConsultation.payment);
+
+      rows[gridConsultation.id] = buildedConsultation;
     });
 
-    newPdf.autoTable(headers, gridConsultations, {
+    newPdf.autoTable(headers, rows, {
       styles,
       headerStyles,
       margin,
@@ -77,6 +83,7 @@ class GeneratePdf extends Component {
 }
 
 GeneratePdf.propTypes = {
+  charges: PropTypes.object.isRequired,
   consultations: PropTypes.object.isRequired,
   filtering: PropTypes.object.isRequired,
 };
