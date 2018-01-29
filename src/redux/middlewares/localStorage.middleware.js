@@ -1,4 +1,5 @@
 import localforage from 'localforage';
+
 import {
   CREATE_CONSULATION,
   DELETE_CONSULTATION,
