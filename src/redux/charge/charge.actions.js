@@ -4,6 +4,12 @@ export const loadCharges = charges => ({
   charges,
 });
 
+export const LOAD_CHARGES_FIREBASE = 'LOAD_CHARGES_FIREBASE';
+export const loadChargesFirebase = charges => ({
+  type: LOAD_CHARGES_FIREBASE,
+  charges,
+});
+
 export const CREATE_CHARGE = 'CREATE_CHARGE';
 export const createCharge = charge => ({
   type: CREATE_CHARGE,

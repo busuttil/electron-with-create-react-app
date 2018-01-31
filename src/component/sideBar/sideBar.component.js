@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import classname from 'classnames';
 
-// import SideBarCharge from './sideBarCharge.connector';
-
 import './sidebar-container.css';
 import './sidebar.css';
 

@@ -1,14 +1,16 @@
 import { connect } from 'react-redux';
 
-import { createFirebaseData } from '../../redux/firebase/firebase.actions';
+import { loadConsultationsFirebase } from '../../redux/consultation/consultation.actions';
+import { loadChargesFirebase } from '../../redux/charge/charge.actions';
+
 import Firebase from './firebase.component';
 
 const mapStateToProps = state => ({
   consultations: state.consultation.consultations,
-  filtering: state.filtering,
   charges: state.charges.charges,
 });
 
 export default connect(mapStateToProps, {
-  createFirebaseDataAction: createFirebaseData,
+  loadConsultationsFirebaseAction: loadConsultationsFirebase,
+  loadChargesFirebaseAction: loadChargesFirebase,
 })(Firebase);

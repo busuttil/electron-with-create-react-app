@@ -1,68 +1,91 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import firebase from 'firebase';
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyB__6jacj_HLNPFAD0AzPp2T0f31Zsil_Q',
-  authDomain: 'morgane-comptability.firebaseapp.com',
-  databaseURL: 'https://morgane-comptability.firebaseio.com/',
-  projectId: 'morgane-comptability',
-  storageBucket: 'morgane-comptability.appspot.com',
-};
-
-firebase.initializeApp(firebaseConfig);
+import Modal from 'react-bootstrap/lib/Modal';
+import fire from '../../firebase.config';
+import cloud from '../../icons/cloud.svg';
+import './list-firebase.css';
 
 class Firebase extends Component {
-  componentWillMount() {
-    this.firebaseRef = firebase.database().ref('data/datas');
-    this.firebaseRef.limitToLast(25).on('value', dataSnapshot => {
-      const items = [];
-      dataSnapshot.forEach(childSnapshot => {
-        const item = childSnapshot.val();
-        item['.key'] = childSnapshot.key;
-        items.push(item);
-      });
+  constructor(props) {
+    super(props);
 
-      this.setState({
-        items,
-      });
+    this.state = {
+      modalOpen: false,
+    };
+  }
+  toggleModal = () => {
+    this.setState({
+      modalOpen: !this.state.modalOpen,
     });
-  }
-
-  componentWillUnmount() {
-    this.firebaseRef.off();
-  }
-
-  handleSubmit = e => {
-    e.preventDefault();
-    const { createFirebaseDataAction, consultations, filtering, charges } = this.props;
-    const datas = { consultations, filtering, charges };
-
-    this.firebaseRef.push(datas);
   };
-  /*saveData = () => {
-    const { createFirebaseDataAction, consultations, filtering, charges } = this.props;
-    const datas = { consultations, filtering, charges };
 
-    // createFirebaseDataAction(datas);
-    firebase.push('datas', datas);
-  };*/
+  openModal = () => {
+    this.setState({
+      modalOpen: !this.state.modalOpen,
+    });
+  };
+
+  save = () => {
+    const { consultations, charges } = this.props;
+    const datas = { consultations, charges };
+    fire
+      .database()
+      .ref('data')
+      .remove();
+    fire
+      .database()
+      .ref('data')
+      .push(datas);
+
+    this.toggleModal();
+  };
+
+  load = () => {
+    const { loadConsultationsFirebaseAction, loadChargesFirebaseAction } = this.props;
+    const messagesRef = fire.database().ref('data');
+    messagesRef.on('child_added', snapshot => {
+      const message = { datas: snapshot.val(), id: snapshot.key };
+      const consultations = { ...message.datas.consultations };
+      const charges = { ...message.datas.charges };
+      loadConsultationsFirebaseAction(consultations);
+      loadChargesFirebaseAction(charges);
+      this.toggleModal();
+    });
+  };
 
   render() {
+    const { modalOpen } = this.state;
+
     return (
       <div>
-        <button onClick={this.handleSubmit}>Sauvegarder</button>
+        <button onClick={this.openModal}>
+          <img className="icons" src={cloud} alt="cloud" />
+        </button>
+        <Modal show={modalOpen} onHide={this.toggleModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Mise à jours des données</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {modalOpen && (
+              <div className="list-firebase">
+                <button onClick={this.save}>Sauvegarder la base de donnée</button>
+                <button onClick={this.load}>Charger la base de donnée</button>
+              </div>
+            )}
+          </Modal.Body>
+        </Modal>
       </div>
     );
   }
 }
 
 Firebase.propTypes = {
-  createFirebaseDataAction: PropTypes.func.isRequired,
   // eslint-disable-next-line
-  filtering: PropTypes.object.isRequired,
   charges: PropTypes.object.isRequired,
   consultations: PropTypes.object.isRequired,
+  loadChargesFirebaseAction: PropTypes.func.isRequired,
+  loadConsultationsFirebaseAction: PropTypes.func.isRequired,
 };
 
 export default Firebase;
