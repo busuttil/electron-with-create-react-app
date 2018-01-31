@@ -4,6 +4,12 @@ export const loadConsultations = consultations => ({
   consultations,
 });
 
+export const LOAD_CONSULTATIONS_FIREBASE = 'LOAD_CONSULTATIONS_FIREBASE';
+export const loadConsultationsFirebase = consultations => ({
+  type: LOAD_CONSULTATIONS_FIREBASE,
+  consultations,
+});
+
 export const CREATE_CONSULATION = 'CREATE_CONSULATION';
 export const createConsultation = consultation => ({
   type: CREATE_CONSULATION,

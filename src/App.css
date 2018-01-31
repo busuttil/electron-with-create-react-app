@@ -110,6 +110,13 @@ button.button-submit:hover {
 button {
   background-color: white;
   border-color: #9f8f75;
+  transition: all 1s ease;
+}
+
+button:hover {
+  background: #493d31;
+  color: white;
+  border-color: #493d31;
 }
 
 button span {

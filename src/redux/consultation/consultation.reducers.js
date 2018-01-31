@@ -2,6 +2,7 @@ import _ from 'lodash';
 /* eslint-disable */
 import {
   LOAD_CONSULTATIONS,
+  LOAD_CONSULTATIONS_FIREBASE,
   CREATE_CONSULATION,
   DELETE_CONSULTATION,
   UPDATE_CONSULTATION,
@@ -35,6 +36,20 @@ const getTaxableBenefit = consultations => {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case LOAD_CONSULTATIONS_FIREBASE: {
+      const { consultations } = action;
+      const lastId = _.findLastKey(consultations, 'id');
+
+      if (!consultations) {
+        return state;
+      }
+
+      return {
+        ...state,
+        lastId,
+        consultations: { ...action.consultations },
+      };
+    }
     case LOAD_CONSULTATIONS: {
       const { consultations } = action;
 
@@ -63,8 +78,6 @@ export default (state = initialState, action) => {
       const id = state.lastId + 1;
       const { consultation } = action;
       const consultations = { ...state.consultations };
-
-      // consultations[id] = { id, ...consultation, month: 0, year: 2018 };
       consultations[id] = { id, ...consultation };
 
       return {
