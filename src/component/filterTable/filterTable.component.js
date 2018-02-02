@@ -45,7 +45,7 @@ class FilterTable extends Component {
           <strong>Année</strong> : {filtering.year}
         </p>
         <button className="filter-table__button" onClick={() => this.editFilter(filtering)}>
-          <img className="icons" src={Edit} alt="edit" />
+          <img className="icons icons--edit" src={Edit} alt="edit" />
         </button>
         <Modal show={modalOpen} onHide={this.toggleModal}>
           {modalOpen && (
