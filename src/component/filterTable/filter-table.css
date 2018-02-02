@@ -6,16 +6,20 @@
 
 .filter-table__year {
   flex: auto;
-
-  padding: 0 10px;
+  margin: auto;
+  padding-right: 10px;
 }
 
 .filter-table__month {
   width: 150px;
-
-  padding: 0 10px;
+  margin: auto;
 }
 
 .filter-table__button {
-  height: 25px;
+  height: 30px;
+  margin: auto;
+}
+
+.filter-table__button .icons--edit {
+  margin-bottom: 2px;
 }

@@ -70,6 +70,14 @@ body {
   height: 20px;
 }
 
+.icons--search {
+  margin-right: 5px;
+  transform: rotate(90deg);
+
+  width: 20px;
+  height: 20px;
+}
+
 .modal-header {
   display: flex;
   flex-direction: column;
@@ -97,7 +105,7 @@ button.button-submit {
   margin-left: auto;
 
   background: #9f8f75;
-  border-color: #9f8f75;
+  border-color: transparent;
   color: white;
   padding: 5px 10px;
   font-weight: lighter;
@@ -108,15 +116,15 @@ button.button-submit:hover {
 }
 
 button {
-  background-color: white;
-  border-color: #9f8f75;
+  background-color: #9f8f75;
+  border-color: transparent;
   transition: all 1s ease;
 }
 
 button:hover {
   background: #493d31;
   color: white;
-  border-color: #493d31;
+  border-color: transparent;
 }
 
 button span {
