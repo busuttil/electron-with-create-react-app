@@ -21,7 +21,7 @@ class AccountContainer extends Component {
     const getSearch = search.name;
 
     if (getSearch && getSearch.length >= 3) {
-      consultations = filter(consultations, consultation => consultation.name.includes(getSearch));
+      consultations = filter(this.props.consultations, consultation => consultation.name.includes(getSearch));
     }
 
     const revenue = getRevenue(consultations);

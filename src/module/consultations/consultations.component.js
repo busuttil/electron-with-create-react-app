@@ -24,7 +24,7 @@ const Consultations = ({ consultations, createAction, editAction, deleteAction }
     rows[consultation.id] = buildedConsultation;
   });
 
-  const headers = ['Date', 'Patient', 'Consulation', 'Moyen de paiement', 'Règlement'];
+  const headers = ['Date', 'Patient', 'Consultation', 'Moyen de paiement', 'Règlement'];
 
   return (
     <div className="list list__consultation">

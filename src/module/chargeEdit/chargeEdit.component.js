@@ -75,7 +75,7 @@ class ChargeEdit extends Component {
     return (
       <Modal show={open} onHide={toggleModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Charge: </Modal.Title>
+          <Modal.Title>Charges : </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form>

@@ -97,9 +97,9 @@ class ConsulationEdit extends Component {
                 onChange={this.handleInputChange}
                 value={consultation.libelle}
               >
-                <option value="Enfant">Enfants</option>
-                <option value="Adultes">Adultes</option>
-                <option value="Couple">Couple</option>
+                <option value="Enfant">Enfant</option>
+                <option value="Adultes">Adolescent</option>
+                <option value="Couple">Adulte</option>
               </FormControl>
             </FormGroup>
             <ControlLabel>Moyen de Paiment</ControlLabel>

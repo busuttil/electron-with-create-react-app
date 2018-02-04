@@ -6,7 +6,6 @@ import Modal from 'react-bootstrap/lib/Modal';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
-import Button from 'react-bootstrap/lib/Button';
 
 class FilterTable extends Component {
   constructor(props) {
@@ -74,7 +73,7 @@ class FilterTable extends Component {
               <ControlLabel>Année :</ControlLabel>
               <FormControl type="number" name="year" value={filtering.year} onChange={this.handleInputChange} />
             </FormGroup>
-            <Button onClick={this.handleSubmit}>Filtrer</Button>
+            <button onClick={this.handleSubmit}>Filtrer</button>
           </form>
         </Modal.Body>
       </div>
