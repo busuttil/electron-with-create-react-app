@@ -119,6 +119,7 @@ button {
   background-color: #9f8f75;
   border: 1px solid transparent;
   transition: all 1s ease;
+  color: white !important;
 }
 
 button:hover {

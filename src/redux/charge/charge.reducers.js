@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { LOAD_CHARGES, CREATE_CHARGE, DELETE_CHARGE, UPDATE_CHARGE } from './charge.actions';
+import { LOAD_CHARGES, CREATE_CHARGE, DELETE_CHARGE, UPDATE_CHARGE, LOAD_CHARGES_FIREBASE } from './charge.actions';
 
 const initialState = {
   charges: {},
@@ -8,6 +8,20 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case LOAD_CHARGES_FIREBASE: {
+      const { charges } = action;
+      const lastId = _.findLastKey(charges, 'id');
+
+      if (!charges) {
+        return state;
+      }
+
+      return {
+        ...state,
+        lastId,
+        charges: { ...action.charges },
+      };
+    }
     case LOAD_CHARGES: {
       const { charges } = action;
 
