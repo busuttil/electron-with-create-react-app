@@ -29,12 +29,16 @@ body {
 }
 
 .App-content__list {
+  position: relative;
+  top: 20px;
+  right: 10px;
   width: 100%;
-  margin-top: 20px;
-  margin-right: 10px;
-
   height: 100vh;
+
   overflow: auto;
+  overflow-y: scroll;
+
+  padding-bottom: 100px;
 }
 
 .App-content #accountTabs-tab-1,

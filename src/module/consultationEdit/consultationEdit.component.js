@@ -98,8 +98,8 @@ class ConsulationEdit extends Component {
                 value={consultation.libelle}
               >
                 <option value="Enfant">Enfant</option>
-                <option value="Adultes">Adolescent</option>
-                <option value="Couple">Adulte</option>
+                <option value="Adolescent">Adolescent</option>
+                <option value="Adulte">Adulte</option>
               </FormControl>
             </FormGroup>
             <ControlLabel>Moyen de Paiment</ControlLabel>

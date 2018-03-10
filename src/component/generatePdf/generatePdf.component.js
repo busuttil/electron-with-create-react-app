@@ -12,7 +12,7 @@ import { getRevenue, getExpenses, precisionRound } from '../../utils/algorithm.u
 import monthToString from '../../utils/month.utils';
 import iconPdf from '../../icons/pdf.svg';
 
-const headers = ['Date', 'Patient', 'Consulation', 'Moyen de paiement', 'Règlement'];
+const headers = ['Charges', 'Prix'];
 
 class GeneratePdf extends Component {
   getDate() {
@@ -39,19 +39,16 @@ class GeneratePdf extends Component {
 
   downloadPdf = () => {
     const newPdf = new jsPDF('p', 'pt');
-    const { consultations, filtering } = this.props;
+    const { charges, filtering } = this.props;
     const rows = [];
 
-    forEach(map(prepareConsultation(consultations, filtering)), gridConsultation => {
+    forEach(map(prepareConsultation(charges, filtering)), gridCharges => {
       const buildedConsultation = [];
 
-      buildedConsultation.push(gridConsultation.date);
-      buildedConsultation.push(gridConsultation.name);
-      buildedConsultation.push(gridConsultation.type);
-      buildedConsultation.push(gridConsultation.meansPayment);
-      buildedConsultation.push(gridConsultation.payment);
+      buildedConsultation.push(gridCharges.name);
+      buildedConsultation.push(gridCharges.price);
 
-      rows[gridConsultation.id] = buildedConsultation;
+      rows[gridCharges.id] = buildedConsultation;
     });
 
     newPdf.autoTable(headers, rows, {
