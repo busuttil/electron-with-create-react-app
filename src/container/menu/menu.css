@@ -22,6 +22,8 @@
 
 .menu__save {
   margin-right: 20px;
+  /*TODO not working in electron app window*/
+  display: none;
 }
 
 .menu button:hover {

@@ -1,4 +1,4 @@
-import { parseInt, map } from 'lodash';
+import { map } from 'lodash';
 
 import { cfe, impot, social } from './config';
 
@@ -8,7 +8,7 @@ export const precisionRound = (number, precision) => {
   return Math.round(number * factor) / factor;
 };
 
-export const sum = (accumulator, currentValue) => accumulator + parseInt(currentValue);
+export const sum = (accumulator, currentValue) => accumulator + parseFloat(currentValue);
 
 export const subPoucent = (a, b) => {
   if (b === 0) {
