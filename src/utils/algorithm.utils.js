@@ -32,5 +32,5 @@ export const getRevenue = consultations => {
 export const getExpenses = charges => {
   const amounts = map(charges, 'price');
 
-  return amounts.reduce(sum, 0);
+  return precisionRound(amounts.reduce(sum, 0), 2);
 };
