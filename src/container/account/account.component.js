@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { find } from 'lodash';
+import find from 'lodash/find';
+import size from 'lodash/size';
 
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Tab from 'react-bootstrap/lib/Tab';
@@ -56,11 +57,12 @@ class AccountComponent extends Component {
   };
 
   render() {
-    const { revenue, expenses, profit, consultations, charges } = this.props;
+    const { revenue, expenses, profit, consultations, charges, brut } = this.props;
+    const numberOfPatient = size(consultations);
 
     return (
       <div className="App-content">
-        <SideBar revenue={revenue} expenses={expenses} profit={profit} />
+        <SideBar revenue={revenue} expenses={expenses} profit={profit} brut={brut} numberOfPatient={numberOfPatient} />
         <div className="App-content__list">
           <Tabs defaultActiveKey={1} id="accountTabs">
             <Tab eventKey={1} title="Consultations">
@@ -103,6 +105,7 @@ AccountComponent.propTypes = {
   revenue: PropTypes.number.isRequired,
   expenses: PropTypes.number.isRequired,
   profit: PropTypes.number.isRequired,
+  brut: PropTypes.number.isRequired
 };
 
 export default AccountComponent;

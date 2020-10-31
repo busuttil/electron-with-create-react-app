@@ -11,6 +11,7 @@ import { prepareConsultation, prepareCharge } from '../../utils/prepareLayout.ut
 import { getRevenue, getExpenses, precisionRound } from '../../utils/algorithm.utils';
 import monthToString from '../../utils/month.utils';
 import iconPdf from '../../icons/pdf.svg';
+import { brut } from '../../container/account/account.container';
 
 const headers = ['Charges', 'Prix'];
 
@@ -62,8 +63,9 @@ class GeneratePdf extends Component {
         newPdf.setTextColor(0, 0, 0);
         newPdf.setFontSize(12);
         newPdf.text(`Recette: ${this.showRevenue()} €`, 40, 80);
-        newPdf.text(`Charges: ${this.showExpenses()} €`, 150, 80);
-        newPdf.text(`Bénéfice: ${this.showBenefit()} €`, 300, 80);
+        newPdf.text(`CA: ${brut(this.props.consultations)} €`, 150, 80);
+        newPdf.text(`Charges: ${this.showExpenses()} €`, 300, 80);
+        newPdf.text(`Bénéfice: ${this.showBenefit()} €`, 400, 80);
       },
     });
 

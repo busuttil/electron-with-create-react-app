@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
   consultations: state.consultation.consultations,
   charges: state.charges.charges,
   filtering: state.filtering,
-  search: state.search,
+  search: state.search
 });
 
 export default connect(mapStateToProps, {

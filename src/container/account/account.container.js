@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { filter } from 'lodash';
+import _, { filter } from 'lodash';
 import AccountComponent from './account.component';
 
+import { sum } from '../../redux/consultation/consultation.reducers';
 import { prepareConsultation, prepareCharge } from '../../utils/prepareLayout.utils';
 import { getRevenue, getExpenses, precisionRound } from '../../utils/algorithm.utils';
+
+export const brut = consultations => {
+  // bénéfice global
+  const getBenefit = _.map(consultations, 'payment');
+
+  return getBenefit.reduce(sum, 0);
+};
 
 class AccountContainer extends Component {
   componentDidMount() {
@@ -39,6 +47,7 @@ class AccountContainer extends Component {
         profit={profit}
         consultations={consultations}
         charges={charges}
+        brut={brut(consultations)}
       />
     );
   }
@@ -52,6 +61,7 @@ AccountContainer.propTypes = {
   loadConsultationsAction: PropTypes.func.isRequired,
   loadChargesAction: PropTypes.func.isRequired,
   loadFilterTableAction: PropTypes.func.isRequired,
+  brut: PropTypes.number.isRequired
 };
 
 export default AccountContainer;

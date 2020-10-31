@@ -8,10 +8,10 @@ const FixedCharges = () => (
     <h3 className="fixed-charges__title">Charges fixes</h3>
     <ul className="fixed-charges__list">
       <li className="fixed-charges__list-item">
-        <span>CFE</span>: {cfe}%
+        <span>CFP</span>: {cfe}%
       </li>
       <li className="fixed-charges__list-item">
-        <span>Impot</span>: {impot}%
+        <span>Impôts</span>: {impot}%
       </li>
       <li className="fixed-charges__list-item">
         <span>Cotisations sociales</span>: {social}%

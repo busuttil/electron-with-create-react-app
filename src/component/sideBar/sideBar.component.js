@@ -29,12 +29,12 @@ class SideBar extends Component {
       'sidebar-container--closed': sidebarOpen,
     });
 
-    const { revenue, expenses, profit } = this.props;
+    const { revenue, expenses, profit, brut, numberOfPatient } = this.props;
 
     return (
       <div className={sidebarClasses}>
         <div className="sidebar__content">
-          <Sumary revenue={revenue} expenses={expenses} profit={profit} />
+          <Sumary revenue={revenue} expenses={expenses} profit={profit} brut={brut} numberOfPatient={numberOfPatient} />
         </div>
         <button className="sidebar__button" onClick={this.toggleSidebar} />
       </div>
@@ -46,6 +46,8 @@ SideBar.propTypes = {
   revenue: PropTypes.number.isRequired,
   expenses: PropTypes.number.isRequired,
   profit: PropTypes.number.isRequired,
+  brut: PropTypes.number.isRequired,
+  numberOfPatient: PropTypes.number.isRequired
 };
 
 export default SideBar;

@@ -7,6 +7,7 @@ import {
   DELETE_CONSULTATION,
   UPDATE_CONSULTATION,
 } from './consultation.actions';
+import { consultations } from '../middlewares/localStorage.middleware';
 
 const initialState = {
   consultations: {},
@@ -14,7 +15,7 @@ const initialState = {
   benefit: {
     overall: 0,
     taxableBenefit: 0,
-  },
+  }
 };
 
 export const sum = (accumulator, currentValue) => accumulator + _.parseInt(currentValue);
@@ -63,7 +64,6 @@ export default (state = initialState, action) => {
           .slice(-1),
         10,
       );
-
       return {
         ...state,
         lastId,
@@ -71,7 +71,7 @@ export default (state = initialState, action) => {
         benefit: {
           overall: getOverallBenefit(action.consultations),
           taxableBenefit: getTaxableBenefit(action.consultations),
-        },
+        }
       };
     }
     case CREATE_CONSULATION: {
@@ -87,7 +87,7 @@ export default (state = initialState, action) => {
         benefit: {
           overall: getOverallBenefit(consultations),
           taxableBenefit: getTaxableBenefit(consultations),
-        },
+        }
       };
     }
 
@@ -103,7 +103,7 @@ export default (state = initialState, action) => {
         benefit: {
           overall: getOverallBenefit(consultations),
           taxableBenefit: getTaxableBenefit(consultations),
-        },
+        }
       };
     }
 
@@ -119,7 +119,7 @@ export default (state = initialState, action) => {
         benefit: {
           overall: getOverallBenefit(consultations),
           taxableBenefit: getTaxableBenefit(consultations),
-        },
+        }
       };
     }
 
