@@ -62,8 +62,8 @@ class GeneratePdf extends Component {
         newPdf.text(`Bilan ${this.getDate()}`, 40, 40);
         newPdf.setTextColor(0, 0, 0);
         newPdf.setFontSize(12);
-        newPdf.text(`Recette: ${this.showRevenue()} €`, 40, 80);
-        newPdf.text(`CA: ${brut(this.props.consultations)} €`, 150, 80);
+        newPdf.text(`CA: ${brut(prepareConsultation(this.props.consultations, filtering))} €`, 40, 80);
+        newPdf.text(`Recette: ${this.showRevenue()} €`, 150, 80);
         newPdf.text(`Charges: ${this.showExpenses()} €`, 300, 80);
         newPdf.text(`Bénéfice: ${this.showBenefit()} €`, 400, 80);
       },
